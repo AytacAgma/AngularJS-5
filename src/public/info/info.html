@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="col-md-7 col-sm-9 col-xs-12">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">User information</h3>
+            </div>
+            <div class="panel-body">
+
+                <ul class="list-group" ng-if="uinfoCtrl.uinfo.fname != ''">
+                    <li class="list-group-item">
+                        <h4 class="list-group-item-heading"><b>Name:</b></h4>
+                        <p class="list-group-item-text">{{uinfoCtrl.uinfo.fname}} {{uinfoCtrl.uinfo.lname}}</p>
+                    </li>
+                    <li class="list-group-item align-items-start">
+                        <h4 class="list-group-item-heading"><b>Favorite dish:</b></h4>
+                        <p>
+                            <span class="badge">{{uinfoCtrl.dish.short_name}}</span>
+                            <b>{{uinfoCtrl.dish.name}}:</b>
+                            <em>{{uinfoCtrl.dish.description}}</em>
+                        </p>
+                        <br>
+                        <img class="float-right img-thumbnail img-fluid"
+                        width="200" height="120"
+                        ng-src="{{uinfoCtrl.basePath}}/images/{{uinfoCtrl.dish.short_name}}.jpg"
+                        alt="{{uinfoCtrl.dish.name}}">
+                    </li>
+                    <li class="list-group-item">
+                        <h4 class="list-group-item-heading"><b>Phone number:</b></h4>
+                        <p class="list-group-item-text">{{uinfoCtrl.uinfo.phone}}</p>
+                    </li>
+                    <li class="list-group-item">
+                        <h4 class="list-group-item-heading"><b>Email:</b></h4>
+                        <p class="list-group-item-text">{{uinfoCtrl.uinfo.email}}</p>
+                    </li>
+                </ul>
+                <div ng-if="uinfoCtrl.uinfo.fname == ''">
+                    <h2>You haven't signed up yet!</h2>
+                    <br>
+                    <button type="button" class="btn btn-large btn-block btn-primary" ui-sref="public.signup">Sign up
+                        now!</button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

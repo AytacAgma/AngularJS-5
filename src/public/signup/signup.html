@@ -1,0 +1,70 @@
+<div class="container">
+    <div class="col-md-7 col-sm-9 col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2>Sign up for our newsletter!</h2>
+            </div>
+            <div class="panel-body">
+                <fieldset>
+                    <form name="signupForm" novalidate>
+
+                        <div class="form-group col-md-6" ng-class='{"has-error": (signupForm.firstNam.$error.required && signupForm.firstNam.$touched)}'>
+                            <label for="fn">First name</label>
+                            <input type="text" name="firstNam" id="fn" class="form-control" placeholder="First name"
+                            ng-model="signupCtrl.user.fname" required>
+                            <span ng-if="signupForm.firstNam.$error.required && signupForm.firstNam.$touched">
+                                You have to enter your first name.
+                            </span>
+                        </div>
+                        
+                        <div class="form-group col-md-6" ng-class='{"has-error": (signupForm.lastNam.$error.required && signupForm.lastNam.$touched)}'>
+                            <label for="ln">Last name</label>
+                            <input type="text" name="lastNam" id="ln" class="form-control" placeholder="Last name"
+                            ng-model="signupCtrl.user.lname" required>
+                            <span ng-if="signupForm.lastNam.$error.required && signupForm.lastNam.$touched">
+                                You have to enter your last name.
+                            </span>
+                        </div>
+
+                        <div class="form-group col-md-12" ng-class='{"has-error": (signupForm.dish.$error.required && signupForm.dish.$touched)}'>
+                            <label for="dc">Please write your favorite dish using the dish code</label>
+                            <input type="text" name="dish" id="dc" class="form-control" placeholder="XYZ"
+                            ng-model="signupCtrl.user.dish" minlength="2" ng-maxlength="4" required
+                            ng-blur="signupCtrl.checkDish()">
+                            <span ng-if="signupForm.dish.$error.required && signupForm.dish.$touched">
+                                Please use the dish codes.
+                            </span>
+                            <span ng-if="signupCtrl.invalDish && signupForm.dish.$touched">
+                                The dish you entered doesn't exist in the menu.
+                            </span>
+                        </div>
+
+                        <div class="form-group col-md-6" ng-class='{"has-error": (signupForm.phoneNum.$error.required && signupForm.phoneNum.$touched)}'>
+                            <label for="pn">Phone number</label>
+                            <input type="tel" name="phoneNum" id="pn" class="form-control" placeholder="Phone ###-###-####" ng-model="signupCtrl.user.phone"
+                                pattern="(\d{3})-(\d{3})-(\d{4})" required>
+                            <span ng-if="signupForm.phoneNum.$error.required && signupForm.phoneNum.$touched">
+                                You have to enter your phone number in the following format: ###-###-####
+                            </span>
+                        </div>
+                        
+                        <div class="form-group col-md-6" ng-class='{"has-error": (signupForm.email.$error.required && signupForm.email.$touched)}'>
+                            <label for="em">Email</label>
+                            <input type="email" name="email" id="em" class="form-control" placeholder="user@domain" ng-model="signupCtrl.user.email"
+                                required>
+                            <span ng-if="signupForm.email.$error.required && signupForm.email.$touched">
+                                You have to enter your email address in the following format: user@domain
+                            </span>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <button class="btn btn-success" ng-disabled="signupForm.$invalid || signupCtrl.invalDish" ng-click="signupCtrl.saveUserData()">Sign up!</button>
+                        </div>
+                        <span ng-if="signupCtrl.loading">Your information is being saved...</span>
+                        <span class="text-success" ng-if="signupCtrl.saved">Your information has been saved!<br>Taking you to your information ...</span>
+                    </form>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>
